@@ -9,7 +9,11 @@ jobs:
     name: Post welcome comment
     runs-on: ubuntu-latest
     steps:
-      - run: gh pr comment --body "Welcome to the repository!"
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Post welcome comment
+        run: gh pr comment --body "Welcome to the repository!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: $ {{ github.event.pull_request.html_url }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
